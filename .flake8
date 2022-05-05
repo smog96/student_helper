@@ -1,0 +1,10 @@
+[flake8]
+ignore = W503
+max-line-length = 120
+max-complexity = 18
+exclude =
+    .git,
+    .envs,
+    .venv,
+    venv,
+    __init__.py

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "kuzstu_bot"
+version = "0.1.0"
+description = ""
+authors = ["Burdasov Ilya <smog965@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-telegram-bot = "^13.11"	# https://github.com/python-telegram-bot/python-telegram-bot
+vk-api = "^11.9.7"			    # https://pypi.org/project/vk-api/
+requests = "^2.27.1"
+alembic = "^1.7.7"
+SQLAlchemy = "1.4.35"
+pydantic = "^1.9.0"
+python-dotenv = "^0.20.0"
+psycopg2 = "^2.9.3"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+ipython = "^8.2.0"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^22.3.0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
