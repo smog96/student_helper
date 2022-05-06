@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     image: postgres:13.4
-    container_name: smogickbots.postgres
+    container_name: student_helper.postgres
     restart: on-failure
     env_file:
       - envs/main.env
@@ -12,14 +12,15 @@ services:
     ports:
       - "5432:5432"
 
-  # telegram_bot:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: smogickbots.telegram
-  #   restart: on-failure
-  #   env_file:
-  #     - envs/main.env
+  telegram_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: telegram_bot
+    container_name: student_helper.telegram
+    restart: on-failure
+    env_file:
+      - envs/main.env
 
 volumes:
   postgres-data:

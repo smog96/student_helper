@@ -2,7 +2,7 @@
 ARG APP_USER=appuser
 ARG APP_NAME=bot
 
-FROM python:3.10.2
+FROM python:3.10.2 as base
 
 ARG APP_USER
 ARG APP_NAME
@@ -30,5 +30,15 @@ COPY . .
 # Switch to non-root
 USER ${APP_USER}:${APP_USER}
 
+
+ENTRYPOINT ["watchgod"]
+
+# --- telegram bot
+FROM base as telegram_bot
 # Run app
 CMD ["python -m src.telegram.main"]
+
+# --- vk bot --- feature
+# Run app
+#CMD ["src.main.main"]
+
