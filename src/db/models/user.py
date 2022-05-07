@@ -8,7 +8,5 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    fio = Column(String)
-
-    telegram_contact = relationship("TelegramContacts", back_populates="user")
+    telegram = relationship("Telegram", back_populates="user")
     # student_data = ...

@@ -8,6 +8,10 @@ class BaseRepository:
     def __init__(self):
         self.db = get_sync_db()
 
+    @property
+    def model(self):
+        raise NotImplementedError
+
     def fetch_total(self, query) -> int:
         query = (
             query.select_from(self.model)
@@ -37,24 +41,23 @@ class BaseRepository:
 
     @no_result()
     def return_scalar_one_(self, query, is_unique: bool = False):
-        print(query)
         result = self.db.execute(query)
         if is_unique:
             return result.unique().scalar_one()
         return result.scalar_one()
 
-    def add(self, item: BaseModel):
-        db_item = self.model(**item.dict())
+    def create(self, instance: BaseModel):
+        db_item = self.model(**instance.dict())
         self.db.add(db_item)
         self.db.commit()
         self.db.refresh(db_item)
         return db_item
 
-    def get(self, id_: int = None, **filters):
-        query = select(self.Model)
+    def get(self, id: int = None, **filters):
+        query = select(self.model)
 
-        if id_:
-            query = query.where(self.model.id == id_)
+        if id:
+            query = query.where(self.model.id == id)
 
         for k, v in filters.items():
             if k not in [
@@ -62,7 +65,3 @@ class BaseRepository:
             ]:
                 query = query.where(k == v)
         return self.return_scalars_(query, is_unique=filters.get("is_unique", False))
-
-    @property
-    def model(self):
-        raise NotImplementedError

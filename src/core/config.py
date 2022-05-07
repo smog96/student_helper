@@ -17,6 +17,8 @@ class _Settings(BaseSettings):
 
     telegram_api_token: str
 
+    university_name: str
+
     class Config:
         env_file = "envs/main.env"
 
