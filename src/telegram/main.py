@@ -4,10 +4,7 @@ from src.core.config import settings
 from src.telegram.handlers.help_handler import help_command
 from src.telegram.handlers.schedule_handler import get_handler
 
-handlers = [
-    help_command,
-    get_handler
-]
+handlers = [help_command, get_handler]
 
 
 def main() -> None:

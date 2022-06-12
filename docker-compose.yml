@@ -11,6 +11,12 @@ services:
       - postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      default:
+        aliases:
+          - database
+          - postgres
+          - db
 
   telegram_bot:
     build:

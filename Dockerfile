@@ -36,7 +36,7 @@ ENTRYPOINT ["watchgod"]
 # --- telegram bot
 FROM base as telegram_bot
 # Run app
-CMD ["src.telegram.main"]
+CMD ["src.telegram.main.main"]
 
 # --- vk bot --- feature
 # Run app
